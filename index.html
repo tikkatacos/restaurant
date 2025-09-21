@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tikka Tacos - Restaurant Fusion Indo-Mexicain | Montereau-Fault-Yonne</title>
+    <meta name="description" content="Découvrez Tikka Tacos, restaurant fusion à Montereau-Fault-Yonne. Spécialités indiennes, tacos, burgers et livraison. Ouvert 7j/7 de 11h à minuit.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #d63384;
+            --secondary-color: #fd7e14;
+            --accent-color: #ffc107;
+            --dark-bg: #1a1a1a;
+            --darker-bg: #0d1117;
+            --text-light: #f8f9fa;
+            --text-muted: #adb5bd;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --gradient-hover: linear-gradient(135deg, #e83e8c, #fd7e14);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background: var(--darker-bg);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(13, 17, 23, 0.98);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .cta-nav {
+            background: var(--gradient);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .cta-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(214, 51, 132, 0.4);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: 
+                linear-gradient(135deg, rgba(214, 51, 132, 0.1), rgba(253, 126, 20, 0.1)),
+                radial-gradient(circle at 20% 50%, rgba(214, 51, 132, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(253, 126, 20, 0.2) 0%, transparent 50%),
+                var(--darker-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(214, 51, 132, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(253, 126, 20, 0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -2px;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+            animation: slideUp 1s ease-out 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideUp 1s ease-out 0.4s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideUp 1s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 20px rgba(214, 51, 132, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(214, 51, 132, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--gradient);
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--dark-bg);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-content h3 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        /* Menu Section */
+        .menu {
+            background: var(--darker-bg);
+        }
+
+        .menu-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            color: var(--text-muted);
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--gradient);
+            border-color: transparent;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary-color);
+        }
+
+        .menu-item h3 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .menu-item p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .menu-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        .menu-category {
+            display: none;
+        }
+
+        .menu-category.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--dark-bg);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .contact-card:hover {
+            transform: translateX(10px);
+            border-color: var(--primary-color);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            width: 60px;
+            height: 60px;
+            background: rgba(214, 51, 132, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .contact-card p {
+            color: var(--text-muted);
+        }
+
+        .contact-card a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .hours-card {
+            background: var(--gradient);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hours-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .hours-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hours-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .hours-card p {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .order-now {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .order-now h4 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .phone-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            color: var(--primary-color);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .phone-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--darker-bg);
+            padding: 3rem 0 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(13, 17, 23, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(-100vh);
+                opacity: 0;
+                transition: all 0.3s ease;
+                border-top: 1px solid var(--border-color);
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-filters {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">TIKKA TACOS</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Accueil</a></li>
+                <li><a href="#about" class="nav-link">À Propos</a></li>
+                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="tel:0987004520" class="nav-link cta-nav"><i class="fas fa-phone"></i> Commander</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">TIKKA TACOS</h1>
+            <h2 class="hero-subtitle">Restaurant Fusion Indo-Mexicain</h2>
+            <p class="hero-description">
+                Découvrez une expérience culinaire unique où les saveurs authentiques de l'Inde 
+                rencontrent la street food moderne. Des épices traditionnelles aux créations fusion 
+                les plus audacieuses.
+            </p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">
+                    <i class="fas fa-utensils"></i> Découvrir le Menu
+                </a>
+                <a href="tel:0987004520" class="btn btn-outline">
+                    <i class="fas fa-phone"></i> Commander Maintenant
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Notre Histoire</h2>
+                <p class="section-subtitle">
+                    Depuis notre ouverture, nous révolutionnons la cuisine fusion avec passion et authenticité
+                </p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-content">
+                    <h3>Une Fusion Authentique</h3>
+                    <p>
+                        Chez Tikka Tacos, nous créons une harmonie parfaite entre les traditions culinaires 
+                        indiennes millénaires et l'innovation de la street food contemporaine. Chaque plat 
+                        raconte une histoire, chaque épice a sa raison d'être.
+                    </p>
+                    <p>
+                        Nos chefs utilisent exclusivement des épices importées d'Inde et des ingrédients 
+                        frais sélectionnés avec soin pour vous offrir une expérience gustative inoubliable.
+                    </p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-pepper-hot"></i>
+                        </div>
+                        <h4>Épices Authentiques</h4>
+                        <p>Importées directement d'Inde pour des saveurs incomparables</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Ouvert 7j/7</h4>
+                        <p>De 11h à minuit pour satisfaire toutes vos envies</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h4>Livraison Rapide</h4>
+                        <p>À domicile et au bureau dès 20€ de commande</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h4>Qualité Premium</h4>
+                        <p>Ingrédients frais et préparation artisanale</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="section menu">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Notre Menu</h2>
+                <p class="section-subtitle">
+                    Explorez notre sélection de plats fusion, des classiques revisités aux créations originales
+                </p>
+            </div>
+
+            <div class="menu-filters">
+                <button class="filter-btn active" data-filter="tacos">Tacos & Wraps</button>
+                <button class="filter-btn" data-filter="burgers">Burgers Fusion</button>
+                <button class="filter-btn" data-filter="indian">Spécialités Indiennes</button>
+                <button class="filter-btn" data-filter="snacks">Snacks & Sides</button>
+                <button class="filter-btn" data-filter="desserts">Desserts & Boissons</button>
+            </div>
+
+            <!-- Tacos & Wraps -->
+            <div id="tacos" class="menu-category active">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h3>Taco Signature</h3>
+                        <p>Notre création phare : une viande au choix, légumes frais, sauce tikka maison et fromage fondu dans une galette artisanale.</p>
+                        <div class="menu-price">
+                            <span>Seul: 6,50€</span>
+                            <span>Menu: 8,00€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Taco Duo</h3>
+                        <p>Double plaisir avec deux viandes de votre choix, parfait pour les gourmands en quête de saveurs intenses.</p>
+                        <div class="menu-price">
+                            <span>Seul: 7,50€</span>
+                            <span>Menu: 9,00€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Taco Trio</h3>
+                        <p>L'expérience ultime avec trois viandes différentes pour un festival de saveurs dans votre assiette.</p>
+                        <div class="menu-price">
+                            <span>Seul: 8,50€</span>
+                            <span>Menu: 10,00€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Taco Maharaja</h3>
+                        <p>Le roi des tacos ! Quatre viandes généreusement garnies pour les appétits royaux.</p>
+                        <div class="menu-price">
+                            <span>Seul: 10,50€</span>
+                            <span>Menu: 12,00€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Cajun Tikka Wrap</h3>
+                        <p>Poulet mariné aux épices cajun et tikka, enroulé avec des légumes croquants et notre sauce signature.</p>
+                        <div class="menu-price">
+                            <span>Seul: 7,00€</span>
+                            <span>Menu: 8,50€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Mumbai Street Wrap</h3>
+                        <p>Inspiré des rues de Mumbai : tenders croustillants, bacon fumé et sauce au poivre noir dans une tortilla chaude.</p>
+                        <div class="menu-price">
+                            <span>Seul: 7,50€</span>
+                            <span>Menu: 9,00€</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Burgers -->
+            <div id="burgers" class="menu-category">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h3>Classic Cheese Burger</h3>
+                        <p>Le classique revisité : steak haché 45g, cheddar fondant, légumes frais et notre sauce maison.</p>
+                        <div class="menu-price">
+                            <span>Seul: 6,50€</span>
+                            <span>Menu: 8,00€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Double Deluxe</h3>
+                        <p>Pour les gros appétits : double steak, double cheddar et garniture généreuse.</p>
+                        <div class="menu-price">
+                            <span>Seul: 7,50€</span>
+                            <span>Menu: 9,00€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Ocean Fusion</h3>
+                        <p>Filet de poisson croustillant, onion rings, cheddar et salade fraîche pour une expérience marine.</p>
+                        <div class="menu-price">
+                            <span>Seul: 6,00€</span>
+                            <span>Menu: 7,50€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Crispy Chicken Supreme</h3>
+                        <p>Tenders dorés, galette de pomme de terre, salade croquante et sauce fry dans un pain brioché.</p>
+                        <div class="menu-price">
+                            <span>Menu: 9,90€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Bombay Avocado</h3>
+                        <p>Poulet grillé aux épices, bacon fumé, avocat frais et sauce épicée pour une explosion de saveurs.</p>
+                        <div class="menu-price">
+                            <span>Menu: 10,90€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>BBQ Bangalore</h3>
+                        <p>Filet de poulet mariné, bacon fumé et notre sauce BBQ épicée aux influences indiennes.</p>
+                        <div class="menu-price">
+                            <span>Menu: 11,90€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Chef's Special</h3>
+                        <p>La création du chef : double steak, galette, œuf, salade et notre sauce mystère.</p>
+                        <div class="menu-price">
+                            <span>Menu: 12,90€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>The Beast</h3>
+                        <p>Pour les plus courageux : triple steak 180g, cornichons, légumes et défi accepté !</p>
+                        <div class="menu-price">
+                            <span>Menu: 14,90€</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Indian Specialties -->
+            <div id="indian" class="menu-category">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h3>Biryani Royal</h3>
+                        <p>Riz basmati parfumé cuit avec du poulet tendre et un mélange secret de 12 épices traditionnelles.</p>
+                        <div class="menu-price">
+                            <span>Seul: 14,50€</span>
+                            <span>Menu: 17,50€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Butter Chicken Masala</h3>
+                        <p>Le roi de la cuisine indienne : poulet dans une sauce crémeuse aux tomates, oignons et noix de cajou.</p>
+                        <div class="menu-price">
+                            <span>8,50€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Poulet Korma</h3>
+                        <p>Poulet mijoté dans une sauce onctueuse aux épices douces et noix de cajou, un délice royal.</p>
+                        <div class="menu-price">
+                            <span>9,50€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Beef Curry Premium</h3>
+                        <p>Bœuf fondant dans une sauce crémeuse légèrement épicée, accompagné de riz basmati.</p>
+                        <div class="menu-price">
+                            <span>9,50€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Tandoori Chicken</h3>
+                        <p>Cuisse de poulet marinée 24h aux épices traditionnelles et grillée au four tandoor.</p>
+                        <div class="menu-price">
+                            <span>4,50€ la pièce</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Chicken Manchurian</h3>
+                        <p>Poulet croustillant dans une sauce indo-chinoise épicée, parfait équilibre sucré-salé.</p>
+                        <div class="menu-price">
+                            <span>9,90€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Kottu Roti</h3>
+                        <p>Spécialité sri-lankaise : pain parotta découpé, œuf et viande au choix, sauté aux épices.</p>
+                        <div class="menu-price">
+                            <span>9,90€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Riz & Pains</h3>
+                        <p>Naan nature, à l'ail ou au fromage | Riz basmati parfumé | Accompagnements traditionnels</p>
+                        <div class="menu-price">
+                            <span>2,00€ à 3,50€</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snacks -->
+            <div id="snacks" class="menu-category">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h3>Wings Party</h3>
+                        <p>Ailes de poulet croustillantes marinées aux épices secrètes, parfaites pour partager.</p>
+                        <div class="menu-price">
+                            <span>10 pièces: 4,90€</span>
+                            <span>20 pièces: 8,90€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Golden Nuggets</h3>
+                        <p>Nuggets de poulet dorés et croustillants, tendres à l'intérieur, parfaits pour toute la famille.</p>
+                        <div class="menu-price">
+                            <span>6 pièces: 4,90€</span>
+                            <span>12 pièces: 7,90€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Crispy Tenders</h3>
+                        <p>Filets de poulet panés croustillants, la garantie d'une texture parfaite à chaque bouchée.</p>
+                        <div class="menu-price">
+                            <span>5 pièces: 4,90€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Fusion Box</h3>
+                        <p>Le mélange parfait : 4 onion rings, 2 mozzarella sticks et 2 cheddar jalapeños croustillants.</p>
+                        <div class="menu-price">
+                            <span>Seul: 7,50€</span>
+                            <span>Menu: 9,00€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Kids Happy Box</h3>
+                        <p>Parfait pour les enfants : nuggets ou mini burger, frites dorées et boisson surprise.</p>
+                        <div class="menu-price">
+                            <span>Menu: 9,00€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Samosa Tradition</h3>
+                        <p>Beignets triangulaires croustillants farcis aux légumes épicés, recette authentique indienne.</p>
+                        <div class="menu-price">
+                            <span>2 pièces: 3,50€</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desserts & Drinks -->
+            <div id="desserts" class="menu-category">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h3>Desserts Signature</h3>
+                        <p>Tiramisu italien traditionnel | Rava Kesari indien à la semoule | Naan au Nutella fondant</p>
+                        <div class="menu-price">
+                            <span>3,00€ chacun</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Milkshakes Premium</h3>
+                        <p>Onctueux milkshakes artisanaux : vanille Madagascar, chocolat belge ou fraise de Plougastel.</p>
+                        <div class="menu-price">
+                            <span>4,50€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Lassi Authentique</h3>
+                        <p>Boissons traditionnelles indiennes rafraîchissantes : mangue Alphonso ou rose de Damas.</p>
+                        <div class="menu-price">
+                            <span>3,50€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Boissons Chaudes</h3>
+                        <p>Café espresso italien, thé chai épicé ou café turc traditionnel pour accompagner vos repas.</p>
+                        <div class="menu-price">
+                            <span>1,50€ à 2,50€</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Boissons Fraîches</h3>
+                        <p>Large sélection de sodas, jus de fruits naturels et eaux aromatisées.</p>
+                        <div class="menu-price">
+                            <span>33cl: 1,20€</span>
+                            <span>1,5L: 3,00€</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contactez-Nous</h2>
+                <p class="section-subtitle">
+                    Prêt à vivre l'expérience Tikka Tacos ? Contactez-nous pour vos commandes et réservations
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Notre Adresse</h4>
+                            <p>81 Rue Jean Jaurès<br>77130 Montereau-Fault-Yonne</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Commandes & Réservations</h4>
+                            <p><a href="tel:0987004520">09.87.00.45.20</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:tikkatacos@gmail.com">tikkatacos@gmail.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div>
+                            <h4>Livraison</h4>
+                            <p>Domicile & Bureau<br>Minimum 20€ de commande</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div>
+                            <h4>Paiement</h4>
+                            <p>Carte bancaire acceptée sur place<br>Espèces & Tickets restaurant</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hours-card">
+                    <h3><i class="fas fa-clock"></i> Horaires d'Ouverture</h3>
+                    <p>Ouvert 7 jours sur 7<br>de 11h00 à minuit</p>
+                    
+                    <div class="order-now">
+                        <h4>Commande Express</h4>
+                        <p>Appelez directement pour une commande rapide</p>
+                        <a href="tel:0987004520" class="phone-btn">
+                            <i class="fas fa-phone"></i>
+                            09.87.00.45.20
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Tikka Tacos</h4>
+                    <p>Restaurant fusion indo-mexicain à Montereau-Fault-Yonne. Une expérience culinaire unique où tradition et innovation se rencontrent.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Horaires</h4>
+                    <p>Lundi - Dimanche<br>11h00 - 00h00</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Rapide</h4>
+                    <p>📞 <a href="tel:0987004520">09.87.00.45.20</a><br>
+                    📧 <a href="mailto:tikkatacos@gmail.com">tikkatacos@gmail.com</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <p>🏪 Sur place<br>🥡 À emporter<br>🚚 Livraison domicile & bureau</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tikka Tacos. Tous droits réservés. | Fait avec ❤️ pour nos clients gourmets</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = mobileToggle.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - navbarHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Menu filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const menuCategories = document.querySelectorAll('.menu-category');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                // Hide all categories
+                menuCategories.forEach(category => {
+                    category.classList.remove('active');
+                });
+
+                // Show selected category
+                const targetCategory = button.getAttribute('data-filter');
+                const categoryElement = document.getElementById(targetCategory);
+                if (categoryElement) {
+                    categoryElement.classList.add('active');
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.menu-item, .feature-card, .contact-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Initialize first menu category
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstCategory = document.getElementById('tacos');
+            if (firstCategory) {
+                firstCategory.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
